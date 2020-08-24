@@ -1,24 +1,37 @@
 #!/usr/bin/env ruby
+require_relative '../lib/board.rb'
+require_relative '../lib/player.rb'
+
 puts 'Game Started!'
 
 puts 'Who is player one?'
 
-user1 = gets.chomp
+user1 = Player.new(gets.chomp, :x)
 
 puts 'Who is player two?'
 
-user2 = gets.chomp
+user2 = Player.new(gets.chomp, :o)
 
-9.times do
-  puts "It's your move #{user1}! You are O!"
+puts user1.symbol
+puts user2.symbol
 
-  gets.chomp
+our_board = Board.new( [
+    [:x, 2, :o],
+    [1, :o, 3],
+    [:o, 2, :o]
+  ])
 
-  puts "Now, your move is displayed on the board #{user1}"
+our_board.start_game
+# 9.times do
+#   puts "It's your move #{user1}! You are O!"
 
-  puts "It's your move #{user2}! You are X!"
+#   gets.chomp
 
-  gets.chomp
+#   puts "Now, your move is displayed on the board #{user1}"
 
-  puts "Now, your move is displayed on the board #{user2}"
-end
+#   puts "It's your move #{user2}! You are X!"
+
+#   gets.chomp
+
+#   puts "Now, your move is displayed on the board #{user2}"
+# end
