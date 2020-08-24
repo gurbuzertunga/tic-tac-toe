@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-
 puts 'Game Started!'
 
 puts 'Who is player one?'
