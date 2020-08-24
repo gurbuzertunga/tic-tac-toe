@@ -19,7 +19,7 @@ user2 = gets.chomp
 
   puts "It's your move #{user2}! You are X!"
 
-   gets.chomp
+  gets.chomp
 
   puts "Now, your move is displayed on the board #{user2}"
 end
