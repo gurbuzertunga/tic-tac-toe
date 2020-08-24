@@ -22,4 +22,3 @@ user2 = gets.chomp
 
   puts "Now, your move is displayed on the board #{user2}"
 end
-
