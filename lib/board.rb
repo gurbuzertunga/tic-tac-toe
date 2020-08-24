@@ -31,9 +31,10 @@ class Board
       end
     end
     
+    
+    def diag_one
     x = 0
     o = 0
-
     @board.each_with_index do |row, index| 
         if row[index] == :x
           x += 1
@@ -41,20 +42,49 @@ class Board
           o += 1
         end
     end
+    if x >= 3 || o >= 3
+      @is_won = true
+      @winner = x >= 3 ? :x : :o
+    end
+    end
 
+    def diag_two
+      x = 0
+      o = 0
      @board.each_with_index do |row, index| 
         if row[row.length() - 1 - index] == :x
           x += 1
         elsif row[row.length() - 1 - index] == :o
           o += 1
         end
+      end
+
+      if x >= 3 || o >= 3
+        @is_won = true
+        @winner = x >= 3 ? :x : :o
+      end
     end
     
-     if x >= 3 || o >= 3
-          @is_won = true
-          @winner = x >= 3 ? :x : :o
+    def vertical
+      x = 0
+      o = 0
+      for i in 0..2 do
+        @board.each do |row|
+         if row[i] == :x 
+        x += 1
+         elsif row[i] == :o
+        o += 1
+         end
+        end
+      end 
+    if x >= 3 || o >= 3
+      @is_won = true
+      @winner = x >= 3 ? :x : :o
     end
-
+   end
+    diag_one
+    diag_two
+    vertical
     return @is_won
   end
 

@@ -16,9 +16,9 @@ puts user1.symbol
 puts user2.symbol
 
 our_board = Board.new( [
-    [:x, 2, :o],
-    [1, :o, 3],
-    [:o, 2, :o]
+    [:o, :o, :x],
+    [:o, 2, 2],
+    [:o, :o, :x]
   ])
 
 our_board.start_game
