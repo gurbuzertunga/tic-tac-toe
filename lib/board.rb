@@ -1,4 +1,4 @@
-# rubocop:disable Metrics/PerceivedComplexity,Metrics/CyclomaticComplexity,Metrics/MethodLength
+# rubocop:disable Metrics/PerceivedComplexity,Naming/MethodParameterName,Metrics/MethodLength
 
 class Board
   attr_reader :board, :current_player, :game_running, :player1, :player2, :current_move, :winner
@@ -55,8 +55,9 @@ class Board
     end
   end
 
-  def set_winner(x,o)
+  def set_winner(x, o)
     return unless x >= 3 || o >= 3
+
     @is_won = true
     @winner = x >= 3 ? :x : :o
   end
@@ -126,12 +127,10 @@ class Board
   end
 
   def draw?
-    if @is_won
-      return false
-    else
-      all_done = @board.all? do |row|
-        row.all?(Symbol)
-      end
+    return false if @is_won
+
+    all_done = @board.all? do |row|
+      row.all?(Symbol)
     end
 
     if all_done
@@ -142,4 +141,4 @@ class Board
   end
 end
 
-# rubocop:enable Metrics/PerceivedComplexity,Metrics/CyclomaticComplexity,Metrics/MethodLength
+# rubocop:enable Metrics/PerceivedComplexity,Naming/MethodParameterName,Metrics/MethodLength
