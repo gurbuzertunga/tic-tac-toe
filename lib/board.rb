@@ -1,4 +1,4 @@
-# rubocop:disable Metrics/PerceivedComplexity,Metrics/CyclomaticComplexity,Metrics/ModuleLength,Metrics/MethodLength
+# rubocop:disable Metrics/PerceivedComplexity,Metrics/CyclomaticComplexity,Metrics/MethodLength
 
 class Board
   attr_reader :board, :current_player, :game_running, :player1, :player2, :current_move, :winner
@@ -55,6 +55,12 @@ class Board
     end
   end
 
+  def set_winner(x,o)
+    return unless x >= 3 || o >= 3
+    @is_won = true
+    @winner = x >= 3 ? :x : :o
+  end
+
   def win?
     # first condition
     @board.each do |row|
@@ -69,62 +75,54 @@ class Board
       end
     end
 
-    def diag_one
-      x = 0
-      o = 0
-      @board.each_with_index do |row, index|
-        if row[index] == :x
-          x += 1
-        elsif row[index] == :o
-          o += 1
-        end
-      end
-      if x >= 3 || o >= 3
-        @is_won = true
-        @winner = x >= 3 ? :x : :o
-      end
-    end
-
-    def diag_two
-      x = 0
-      o = 0
-      @board.each_with_index do |row, index|
-        if row[row.length - 1 - index] == :x
-          x += 1
-        elsif row[row.length - 1 - index] == :o
-          o += 1
-        end
-      end
-
-      if x >= 3 || o >= 3
-        @is_won = true
-        @winner = x >= 3 ? :x : :o
-      end
-    end
-
-    def vertical
-      x = 0
-      o = 0
-      (0..2).each do |i|
-        @board.each do |row|
-          if row[i] == :x
-            x += 1
-          elsif row[i] == :o
-            o += 1
-          end
-        end
-        x = 0
-        o = 0
-      end
-      if x >= 3 || o >= 3
-        @is_won = true
-        @winner = x >= 3 ? :x : :o
-      end
-   end
     diag_one
     diag_two
     vertical
     @is_won
+  end
+
+  def diag_one
+    x = 0
+    o = 0
+    @board.each_with_index do |row, index|
+      if row[index] == :x
+        x += 1
+      elsif row[index] == :o
+        o += 1
+      end
+    end
+    set_winner
+  end
+
+  def diag_two
+    x = 0
+    o = 0
+    @board.each_with_index do |row, index|
+      if row[row.length - 1 - index] == :x
+        x += 1
+      elsif row[row.length - 1 - index] == :o
+        o += 1
+      end
+    end
+
+    set_winner
+  end
+
+  def vertical
+    x = 0
+    o = 0
+    (0..2).each do |i|
+      @board.each do |row|
+        if row[i] == :x
+          x += 1
+        elsif row[i] == :o
+          o += 1
+        end
+      end
+      x = 0
+      o = 0
+    end
+    set_winner
   end
 
   def draw?
@@ -144,4 +142,4 @@ class Board
   end
 end
 
-# rubocop:enable Metrics/PerceivedComplexity,Metrics/CyclomaticComplexity,Metrics/ModuleLength,Metrics/MethodLength
+# rubocop:enable Metrics/PerceivedComplexity,Metrics/CyclomaticComplexity,Metrics/MethodLength
