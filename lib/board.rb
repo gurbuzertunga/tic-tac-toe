@@ -141,4 +141,4 @@ class Board
   end
 end
 
-# rubocop:disable Naming/MethodParameterName
+# rubocop:enable Naming/MethodParameterName
