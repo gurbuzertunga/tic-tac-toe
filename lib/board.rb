@@ -1,3 +1,5 @@
+# rubocop:disable Metrics/PerceivedComplexity,Metrics/CyclomaticComplexity,Metrics/ModuleLength,Metrics/MethodLength
+
 class Board
   attr_reader :board, :current_player, :game_running, :player1, :player2, :current_move, :winner
 
@@ -47,10 +49,10 @@ class Board
             return display_board
           end
         end
-        end
+      end
     else
       'please enter a number from 1 to 9'
-     end
+    end
   end
 
   def win?
@@ -141,3 +143,5 @@ class Board
     end
   end
 end
+
+# rubocop:enable Metrics/PerceivedComplexity,Metrics/CyclomaticComplexity,Metrics/ModuleLength,Metrics/MethodLength
