@@ -50,7 +50,8 @@ while game_running
       played_moves.push(current_move)
       puts "Now, your move is displayed on the board #{current_player == 1 ? user1 : user2}"
       display_board(board)
-      winning_move = true
+      winning_move = false
+      # if the game_logic runs into a winning move. variable will change to true.
       if winning_move == true
         puts 'this is a winning move'
         game_running = false
