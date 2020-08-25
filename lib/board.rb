@@ -1,4 +1,4 @@
-# rubocop:disable Metrics/PerceivedComplexity,Naming/MethodParameterName,Metrics/MethodLength
+# rubocop:disable Naming/MethodParameterName
 
 class Board
   attr_reader :board, :current_player, :game_running, :player1, :player2, :current_move, :winner
@@ -141,4 +141,4 @@ class Board
   end
 end
 
-# rubocop:enable Metrics/PerceivedComplexity,Naming/MethodParameterName,Metrics/MethodLength
+# rubocop:disable Naming/MethodParameterName
