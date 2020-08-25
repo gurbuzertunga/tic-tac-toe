@@ -57,7 +57,6 @@ class Board
 
   def set_winner(x, o)
     return unless x >= 3 || o >= 3
-
     @is_won = true
     @winner = x >= 3 ? :x : :o
   end
@@ -92,7 +91,7 @@ class Board
         o += 1
       end
     end
-    set_winner
+    set_winner(x,o)
   end
 
   def diag_two
@@ -106,7 +105,7 @@ class Board
       end
     end
 
-    set_winner
+    set_winner(x,o)
   end
 
   def vertical
@@ -120,10 +119,10 @@ class Board
           o += 1
         end
       end
-      x = 0
-      o = 0
     end
-    set_winner
+    set_winner(x,o)
+    x = 0
+    o = 0
   end
 
   def draw?
