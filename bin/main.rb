@@ -24,7 +24,6 @@ game_running = true
 current_player = 1
 
 def display_board(board)
-  winning_move = false
   board.each do |row|
     puts
     row.each do |block|
@@ -37,6 +36,7 @@ end
 
 while game_running
 
+  winning_move = false
   puts "It's your move #{current_player == 1 ? user1 : user2}! You are  #{current_player == 1 ? 'o' : 'x'}!"
 
   current_move = gets.chomp.to_i
@@ -49,7 +49,6 @@ while game_running
       played_moves.push(current_move)
       puts "Now, your move is displayed on the board #{current_player == 1 ? user1 : user2}"
       display_board(board)
-      winning_move = false  
       if !current_player == 1
         winning_move = true
         puts 'this is a winning move'
