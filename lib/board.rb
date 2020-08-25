@@ -4,16 +4,33 @@ class Board
   @is_won = false
   @winner = nil
 
-  def initialize (board)
-   @board = board
+  def initialize (user, move)
+   @user = user
+   @move = move
+   @board = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+  ]
   end
   
   def start_game()
     if win?()
       puts "#{@winner} has won the game."
     else 
-      # loop
       puts 'game is running .....' 
+    end
+  end
+
+  def check_on_board(symbol, block)
+    :x
+    :o
+    @board.each_with_index do |row, row_index|
+      row.each_with_index do |block_value, block_index|
+        if block_value == block 
+          row[row_index][block_index] = symbol
+        end
+      end
     end
   end
 
