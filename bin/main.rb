@@ -51,8 +51,9 @@ while game_running
       puts "Now, your move is displayed on the board #{current_player == 1 ? user1 : user2}"
       display_board(board)
       winning_move = false
-      # if the game_logic runs into a winning move. variable will change to true.
-      if winning_move == true
+    
+      if !current_player == 1
+        winning_move = true
         puts 'this is a winning move'
         game_running = false
       end
