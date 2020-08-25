@@ -21,11 +21,10 @@ user2 = gets.chomp
 
 game_running = true
 
-winning_move = false
-
 current_player = 1
 
 def display_board(board)
+  winning_move = false
   board.each do |row|
     puts
     row.each do |block|
@@ -50,8 +49,7 @@ while game_running
       played_moves.push(current_move)
       puts "Now, your move is displayed on the board #{current_player == 1 ? user1 : user2}"
       display_board(board)
-      winning_move = false
-    
+      winning_move = false  
       if !current_player == 1
         winning_move = true
         puts 'this is a winning move'
