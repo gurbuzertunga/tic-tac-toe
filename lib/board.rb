@@ -1,37 +1,57 @@
 class Board
-
-  @current_player = nil
-  @is_won = false
-  @winner = nil
-
-  def initialize (user, move)
-   @user = user
-   @move = move
+  attr_reader :board, :current_player, :game_running, :player1, :player2, :current_move, :winner
+  
+  def initialize(player1, player2)
    @board = [
     [1, 2, 3],
     [4, 5, 6],
     [7, 8, 9]
   ]
+  @played_moves = []
+  @current_player = player1
+  @is_won = false
+  @game_running = true
+  @winner = nil
+  @player1 = player1
+  @player2 = player2
+  @current_move = nil
   end
-  
-  def start_game()
-    if win?()
-      puts "#{@winner} has won the game."
-    else 
-      puts 'game is running .....' 
+
+  def display_board()
+    @board.each do |row|
+      puts
+      row.each do |block|
+        print block.to_s + ' '
+      end
+      puts
     end
+    puts
+  end
+
+
+  def end_game
+    @game_running = false 
   end
 
   def check_on_board(symbol, block)
-    :x
-    :o
-    @board.each_with_index do |row, row_index|
-      row.each_with_index do |block_value, block_index|
-        if block_value == block 
-          row[row_index][block_index] = symbol
-        end
-      end
-    end
+    if (1..9).cover?(block)
+        if @played_moves.include?(block)
+           return 'this block is aready taken'
+        else
+          @played_moves.push(block)
+          @board.each_with_index do |row, row_index|
+              row.each_with_index do |block_value, block_index|
+                    if block_value == block 
+                      row[block_index] = symbol
+                      @current_player = @current_player == @player1 ? @player2 : @player1
+                      return display_board
+                    end
+              end
+            end
+          end 
+      else
+          return 'please enter a number from 1 to 9'
+     end
   end
 
   def win?
@@ -93,12 +113,15 @@ class Board
         o += 1
          end
         end
+      x = 0
+      o = 0
       end 
-    if x >= 3 || o >= 3
-      @is_won = true
-      @winner = x >= 3 ? :x : :o
-    end
+      if x >= 3 || o >= 3
+        @is_won = true
+        @winner = x >= 3 ? :x : :o
+      end
    end
+
     diag_one
     diag_two
     vertical
