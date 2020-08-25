@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# rubocop:disable Layout/LineLength, Metrics/BlockNesting
+# rubocop:disable Metrics/BlockNesting
 
 played_moves = []
 
@@ -65,4 +65,4 @@ while game_running
   end
 
 end
-# rubocop:enable Layout/LineLength, Metrics/BlockNesting
+# rubocop:enable Metrics/BlockNesting
