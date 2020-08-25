@@ -21,7 +21,7 @@ user2 = gets.chomp
 
 game_running = true
 
-counter = 0
+winning_move = false
 
 current_player = 1
 
@@ -50,8 +50,8 @@ while game_running
       played_moves.push(current_move)
       puts "Now, your move is displayed on the board #{current_player == 1 ? user1 : user2}"
       display_board(board)
-      counter += 1
-      if counter > 2
+      winning_move = true
+      if winning_move == true
         puts 'this is a winning move'
         game_running = false
       end
