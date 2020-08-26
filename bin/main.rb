@@ -1,5 +1,5 @@
-# !/usr/bin/env ruby
 
+# !/usr/bin/env ruby
 require_relative '../lib/board'
 require_relative '../lib/player'
 
@@ -41,3 +41,4 @@ while my_board.game_running
     my_board.end_game
   end
 end
+# rubocop:enable Metrics/BlockNesting
