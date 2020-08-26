@@ -33,7 +33,7 @@ while my_board.game_running
 
   puts my_board.check_on_board(my_board.current_player.symbol, gets.chomp.to_i)
   if my_board.draw?
-    puts "IT'S A DRAW YOU USELESS PIECES OF SHITS"
+    puts "IT'S A DRAW"
     my_board.end_game
   end
   if my_board.win?

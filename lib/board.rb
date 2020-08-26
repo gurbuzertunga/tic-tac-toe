@@ -57,6 +57,7 @@ class Board
 
   def set_winner(x, o)
     return unless x >= 3 || o >= 3
+
     @is_won = true
     @winner = x >= 3 ? :x : :o
   end
@@ -91,7 +92,7 @@ class Board
         o += 1
       end
     end
-    set_winner(x,o)
+    set_winner(x, o)
   end
 
   def diag_two
@@ -105,24 +106,31 @@ class Board
       end
     end
 
-    set_winner(x,o)
+    set_winner(x, o)
   end
 
   def vertical
-    x = 0
-    o = 0
-    (0..2).each do |i|
+    x_col = []
+    o_col = []
+    index = 0
+    @board.each do
       @board.each do |row|
-        if row[i] == :x
-          x += 1
-        elsif row[i] == :o
-          o += 1
+        if row[index] == :x
+          x_col.push(row[index])
+        elsif row[index] == :o
+          o_col.push(row[index])
         end
       end
+      if x_col.length >= 3 && x_col.all?(:x)
+        set_winner(3, 0)
+      elsif o_col.length >= 3 && o_col.all?(:o)
+        set_winner(0, 3)
+      else
+        x_col = []
+        o_col = []
+        index += 1
+      end
     end
-    set_winner(x,o)
-    x = 0
-    o = 0
   end
 
   def draw?
