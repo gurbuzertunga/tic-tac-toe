@@ -19,17 +19,6 @@ class Board
     @current_move = nil
   end
 
-  def display_board
-    @board.each do |row|
-      puts
-      row.each do |block|
-        print block.to_s + ' '
-      end
-      puts
-    end
-    puts
-  end
-
   def end_game
     @game_running = false
   end
@@ -46,7 +35,7 @@ class Board
 
             row[block_index] = symbol
             @current_player = @current_player == @player1 ? @player2 : @player1
-            return display_board
+            return 'your move is marked on board.'
           end
         end
       end

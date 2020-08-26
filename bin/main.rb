@@ -4,6 +4,17 @@ require_relative '../lib/player'
 
 puts 'Game Started!'
 
+def display_board(board)
+  board.each do |row|
+    puts
+    row.each do |block|
+      print block.to_s + ' '
+    end
+    puts
+  end
+  puts
+end
+
 puts '1 2 3
 4 5 6
 7 8 9'
@@ -24,13 +35,16 @@ player2 = Player.new(user2_name, :o)
 
 my_board = Board.new(player1, player2)
 
-my_board.display_board
+puts display_board(my_board.board)
 
 while my_board.game_running
 
   puts "It's your move #{my_board.current_player.name}! You are #{my_board.current_player.symbol}!"
 
   puts my_board.check_on_board(my_board.current_player.symbol, gets.chomp.to_i)
+
+  puts display_board(my_board.board)
+
   if my_board.draw?
     puts "IT'S A DRAW"
     my_board.end_game
