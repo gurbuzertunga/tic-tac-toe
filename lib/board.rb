@@ -1,4 +1,4 @@
-# rubocop:disable Naming/MethodParameterName
+# rubocop:disable Naming/MethodParameterName,Metrics/CyclomaticComplexity,Metrics/MethodLength
 
 class Board
   attr_reader :board, :current_player, :game_running, :player1, :player2, :current_move, :winner
@@ -148,4 +148,4 @@ class Board
   end
 end
 
-# rubocop:enable Naming/MethodParameterName
+# rubocop:enable Naming/MethodParameterName,Metrics/CyclomaticComplexity,Metrics/MethodLength
