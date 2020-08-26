@@ -45,12 +45,14 @@ while my_board.game_running
 
   puts display_board(my_board.board)
 
-  if my_board.draw?
-    puts "IT'S A DRAW"
-    my_board.end_game
-  end
+  
   if my_board.win?
     puts "#{my_board.winner} has won the game."
+    my_board.end_game
+    break
+  end
+  if my_board.draw?
+    puts "IT'S A DRAW"
     my_board.end_game
   end
 end
