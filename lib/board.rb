@@ -1,4 +1,4 @@
-# rubocop:disable Naming/MethodParameterName
+# rubocop:disable Naming/MethodParameterName,Metrics/CyclomaticComplexity,Metrics/MethodLength,Metrics/PerceivedComplexity
 
 class Board
   attr_reader :board, :current_player, :game_running, :player1, :player2, :current_move, :winner
@@ -19,17 +19,6 @@ class Board
     @current_move = nil
   end
 
-  def display_board
-    @board.each do |row|
-      puts
-      row.each do |block|
-        print block.to_s + ' '
-      end
-      puts
-    end
-    puts
-  end
-
   def end_game
     @game_running = false
   end
@@ -46,7 +35,7 @@ class Board
 
             row[block_index] = symbol
             @current_player = @current_player == @player1 ? @player2 : @player1
-            return display_board
+            return 'your move is marked on board.'
           end
         end
       end
@@ -110,20 +99,27 @@ class Board
   end
 
   def vertical
-    x = 0
-    o = 0
-    (0..2).each do |i|
+    x_col = []
+    o_col = []
+    index = 0
+    @board.each do
       @board.each do |row|
-        if row[i] == :x
-          x += 1
-        elsif row[i] == :o
-          o += 1
+        if row[index] == :x
+          x_col.push(row[index])
+        elsif row[index] == :o
+          o_col.push(row[index])
         end
       end
+      if x_col.length >= 3 && x_col.all?(:x)
+        set_winner(3, 0)
+      elsif o_col.length >= 3 && o_col.all?(:o)
+        set_winner(0, 3)
+      else
+        x_col = []
+        o_col = []
+        index += 1
+      end
     end
-    set_winner(x, o)
-    x = 0
-    o = 0
   end
 
   def draw?
@@ -141,4 +137,4 @@ class Board
   end
 end
 
-# rubocop:enable Naming/MethodParameterName
+# rubocop:enable Naming/MethodParameterName,Metrics/CyclomaticComplexity,Metrics/MethodLength,Metrics/PerceivedComplexity

@@ -1,9 +1,19 @@
-# !/usr/bin/env ruby
-
+#!/usr/bin/env ruby
 require_relative '../lib/board'
 require_relative '../lib/player'
 
 puts 'Game Started!'
+
+def display_board(board)
+  board.each do |row|
+    puts
+    row.each do |block|
+      print block.to_s + ' '
+    end
+    puts
+  end
+  puts
+end
 
 puts '1 2 3
 4 5 6
@@ -21,23 +31,33 @@ puts 'Who is player two?'
 
 user2_name = gets.chomp
 
+if user2_name == user1_name
+  puts 'The name is taken. Please choose another name!'
+
+  user2_name = gets.chomp
+end
+
 player2 = Player.new(user2_name, :o)
 
 my_board = Board.new(player1, player2)
 
-my_board.display_board
+puts display_board(my_board.board)
 
 while my_board.game_running
 
   puts "It's your move #{my_board.current_player.name}! You are #{my_board.current_player.symbol}!"
 
   puts my_board.check_on_board(my_board.current_player.symbol, gets.chomp.to_i)
-  if my_board.draw?
-    puts "IT'S A DRAW YOU USELESS PIECES OF SHITS"
-    my_board.end_game
-  end
+
+  puts display_board(my_board.board)
+
   if my_board.win?
     puts "#{my_board.winner} has won the game."
+    my_board.end_game
+    break
+  end
+  if my_board.draw?
+    puts "IT'S A DRAW"
     my_board.end_game
   end
 end
