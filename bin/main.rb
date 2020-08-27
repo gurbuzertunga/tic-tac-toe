@@ -31,6 +31,12 @@ puts 'Who is player two?'
 
 user2_name = gets.chomp
 
+if user2_name == user1_name
+  puts 'The name is taken. Please choose another name!'
+
+  user2_name = gets.chomp
+end
+
 player2 = Player.new(user2_name, :o)
 
 my_board = Board.new(player1, player2)
