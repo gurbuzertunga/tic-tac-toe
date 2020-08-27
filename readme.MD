@@ -6,7 +6,7 @@ For this project, we wrote a Ruby executable script main.rb that allows the user
 
 ## How To Play
 
-'Tic, Tac, Toe' is a traditional game for two players played on a board with 9 squares.
+'Tic Tac Toe' is a traditional game for two players played on a board with 9 squares.
 
 Each player is represented by a symbol, either 'X' or 'O'. The players then take turns to place their respective symbols in an empty square on the board, with O's going first - in our version of the game, these squares are represented by the numbers 1 to 9.
 
@@ -18,7 +18,7 @@ In the event that all 9 squares are taken without either player getting three of
 
 ### Accessing The Game
 
-- To quickly play the game, follow the link in the [Live Demo section](https://repl.it/@gurbuzertunga/tic-tac-toe#bin/main.rb) and hit the Run button in the header. The game will begin in the window on the right.
+- To quickly play the game, follow the link in the [Live Demo section](https://repl.it/@gurbuzertunga/tic-tac-toe#bin/main.rb) and  in the window on the right type "ruby ./bin/main.rb".
 
 - To download the contents of this repository and play the game locally, follow the steps in the ['Local Installation' section](#local-installation).
 
@@ -30,7 +30,7 @@ In the event that all 9 squares are taken without either player getting three of
 
 ## Live Demo
 
-To quickly see our project in action, visit the [live demo]('#') on repl.it.
+To quickly see our project in action, visit the [live demo](https://repl.it/@gurbuzertunga/tic-tac-toe#bin/main.rb) on repl.it.
 
 There are no pre-requisites for enjoying the game through this method.
 
@@ -46,7 +46,9 @@ To get your own copy of our project simply clone the repository to your local ma
 
 **Step 1**: Using the Command Line, navigate into the location where you would like to have the repository. Then enter the following line of code:
 
+```
 `git clone https://github.com/gurbuzertunga/tic-tac-toe.git`
+```
 
 **Step 2**: Once the repo has been cloned, navigate inside it by entering the following command:
 
