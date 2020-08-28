@@ -47,4 +47,28 @@ describe Board do
         expect(board.win?).to eql(false)
     end
   end
+
+  describe '#diag_one' do
+    it 'should return the nil value' do   
+        expect(board.diag_one).to eql(nil)
+    end
+  end
+
+  describe '#diag_two' do
+    it 'should return the nil value' do   
+        expect(board.diag_two).to eql(nil)
+    end
+  end
+
+  describe '#vertical' do
+    it 'should return the board' do   
+        expect(board.vertical).to eql([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+    end
+  end
+
+  describe '#draw?' do
+    it 'should return a false value' do   
+        expect(board.draw?).to eql(false)
+    end
+  end
 end
