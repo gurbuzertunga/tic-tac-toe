@@ -46,7 +46,6 @@ class Board
 
   def set_winner(x, o)
     return unless x >= 3 || o >= 3
-
     @is_won = true
     @winner = x >= 3 ? :x : :o
   end
