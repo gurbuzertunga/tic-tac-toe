@@ -2,7 +2,7 @@
 
 class Board
   attr_reader :board, :current_player, :game_running, :player1, :player2, :current_move, :winner
-
+  attr_writer :board
   def initialize(player1, player2)
     @board = [
       [1, 2, 3],
@@ -19,56 +19,13 @@ class Board
     @current_move = nil
   end
 
-  def end_game
-    @game_running = false
-  end
-
-  def check_on_board(symbol, block)
-    if (1..9).cover?(block)
-      if @played_moves.include?(block)
-        'this block is aready taken'
-      else
-        @played_moves.push(block)
-        @board.each_with_index do |row, _row_index|
-          row.each_with_index do |block_value, block_index|
-            next unless block_value == block
-
-            row[block_index] = symbol
-            @current_player = @current_player == @player1 ? @player2 : @player1
-            return 'your move is marked on board.'
-          end
-        end
-      end
-    else
-      'please enter a number from 1 to 9'
-    end
-  end
+  private
 
   def set_winner(x, o)
     return unless x >= 3 || o >= 3
 
     @is_won = true
     @winner = x >= 3 ? :x : :o
-  end
-
-  def win?
-    # first condition
-    @board.each do |row|
-      if row.all?(:x)
-        @is_won = true
-        @winner = :x
-        return @is_won
-      elsif row.all?(:o)
-        @is_won = true
-        @winner = :o
-        return @is_won
-      end
-    end
-
-    diag_one
-    diag_two
-    vertical
-    @is_won
   end
 
   def diag_one
@@ -119,6 +76,53 @@ class Board
         o_col = []
         index += 1
       end
+    end
+  end
+
+  public
+
+  def win?
+    # first condition
+    @board.each do |row|
+      if row.all?(:x)
+        @is_won = true
+        @winner = :x
+        return @is_won
+      elsif row.all?(:o)
+        @is_won = true
+        @winner = :o
+        return @is_won
+      end
+    end
+
+    diag_one
+    diag_two
+    vertical
+    @is_won
+  end
+
+  def end_game
+    @game_running = false
+ end
+
+  def check_on_board(symbol, block)
+    if (1..9).cover?(block)
+      if @played_moves.include?(block)
+        'this block is aready taken'
+      else
+        @played_moves.push(block)
+        @board.each_with_index do |row, _row_index|
+          row.each_with_index do |block_value, block_index|
+            next unless block_value == block
+
+            row[block_index] = symbol
+            @current_player = @current_player == @player1 ? @player2 : @player1
+            return 'your move is marked on board.'
+          end
+        end
+      end
+    else
+      'please enter a number from 1 to 9'
     end
   end
 
