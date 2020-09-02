@@ -103,7 +103,7 @@ class Board
 
   def end_game
     @game_running = false
- end
+  end
 
   def check_on_board(symbol, block)
     if (1..9).cover?(block)
